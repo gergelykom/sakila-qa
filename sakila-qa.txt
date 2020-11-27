@@ -1,0 +1,166 @@
+Sakila answers
+
+
+1. SELECT * FROM actor;
+
+2. SELECT * FROM actor WHERE first_name = 'john';
+
+3. SELECT * FROM actor WHERE last_name = 'neeson';
+
+4. SELECT * FROM actor WHERE actor_id % 10 = 0;
+
+5. SELECT description FROM film WHERE film_id = 100;
+   A Beautiful Drama of a Dentist And a Composer who must Battle a Sumo Wrestler in The First Manned Space Station
+
+6. SELECT * FROM film WHERE rating ='R';
+
+7. SELECT * FROM film WHERE rating != 'R';
+
+8. SELECT * FROM film ORDER BY length LIMIT 10;
+
+9. SELECT title FROM film;
+
+10. SELECT * FROM film WHERE 'Deleted scenes' IN(special_features);
+
+11. SELECT DISTINCT last_name FROM actor;
+
+12. SELECT last_name, COUNT(*) X FROM actor GROUP BY last_name HAVING X > 1;
+
+13. SELECT actor_id, COUNT(*) FROM film_actor GROUP BY actor_id ORDER BY COUNT(actor_i
+d) DESC LIMIT 1;
+    SELECT * FROM actor WHERE actor_id = 107;
+    ANSWER: GINA DEGENERES
+
+14. YES;
+
+15. SELECT * FROM inventory WHERE film_id=1;
+    SELECT * FROM rental WHERE inventory_id IN (1,2,3,4,5,6,7,8);
+
+16. SELECT AVG(length) FROM film;
+    115.2720
+
+17. SELECT rating, AVG(length) FROM film GROUP BY rating;
++--------+-------------+
+| rating | avg(length) |
++--------+-------------+
+| G      |    111.0506 |
+| PG     |    112.0052 |
+| PG-13  |    120.4439 |
+| R      |    118.6615 |
+| NC-17  |    113.2286 |
++--------+-------------+
+(if category means rating?)
+
+18. None? SELECT * FROM film WHERE 'Robot' IN(description); returns empty;
+
+19. 
++--------+--------------------+
+| length | title              |
++--------+--------------------+
+|    185 | CHICAGO NORTH      |
+|    185 | CONTROL ANTHEM     |
+|    185 | DARN FORRESTER     |
+|    185 | GANGS PRIDE        |
+|    185 | HOME PITY          |
+|    185 | MUSCLE BRIGHT      |
+|    185 | POND SEATTLE       |
+|    185 | SOLDIERS EVOLUTION |
+|    185 | SWEET BROTHERHOOD  |
+|    185 | WORST BANGER       |
++--------+--------------------+
+
+20. SELECT release_year,COUNT(*) FROM film GROUP BY release_year;
+    all released in 2006;
+
+21. SELECT * FROM category; to see that horror is category_id 11;
+    SELECT category_id, COUNT(*) FROM film_category WHERE category_id = 11  GROUP BY catego
+    ry_id;
++-------------+----------+
+| category_id | count(*) |
++-------------+----------+
+|          11 |       56 |
++-------------+----------+
+
+22. SELECT name AS full_name FROM staff_list WHERE id =1;
++--------------+
+| full_name    |
++--------------+
+| Mike Hillyer |
++--------------+
+
+23. SELECT actor_id FROM actor WHERE last_name = 'Costner';
+    SELECT film.title FROM film JOIN film_actor ON film.film_id = film_actor.film_id WHERE
+    film_actor.actor_id = 16;
+
+24. SELECT film_id FROM film WHERE title='Bucket Brotherhood';
+    SELECT store_id,count(*) FROM inventory WHERE film_id = 103 GROUP BY store_id ORDER BY
+    COUNT(*);
++----------+----------+
+| store_id | count(*) |
++----------+----------+
+|        1 |        4 |
+|        2 |        4 |
++----------+----------+
+    
+25. SELECT COUNT(DISTINCT country) FROM country;
++-------------------------+
+| count(distinct country) |
++-------------------------+
+|                     109 |
++-------------------------+
+
+26. SELECT name FROM language ORDER BY name;
++----------+
+| name     |
++----------+
+| English  |
+| French   |
+| German   |
+| Italian  |
+| Japanese |
+| Mandarin |
++----------+
+
+27. SELECT first_name, last_name FROM actor WHERE last_name LIKE '%son' ORDER BY first_name;
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| ALBERT     | JOHANSSON |
+| ANGELA     | HUDSON    |
+| BETTE      | NICHOLSON |
+| CHRISTIAN  | NEESON    |
+| JAYNE      | NEESON    |
+| MATTHEW    | JOHANSSON |
+| MERYL      | GIBSON    |
+| RAY        | JOHANSSON |
+| WILL       | WILSON    |
++------------+-----------+
+
+28. SELECT category_id AS categories , COUNT(film_id) AS number_of_movies FROM film_
+    category GROUP BY category_id;
++------------+------------------+
+| categories | number_of_movies |
++------------+------------------+
+|          1 |               64 |
+|          2 |               66 |
+|          3 |               60 |
+|          4 |               57 |
+|          5 |               58 |
+|          6 |               68 |
+|          7 |               62 |
+|          8 |               69 |
+|          9 |               73 |
+|         10 |               61 |
+|         11 |               56 |
+|         12 |               51 |
+|         13 |               63 |
+|         14 |               61 |
+|         15 |               74 |
+|         16 |               57 |
++------------+------------------+
+
+29. SELECT actor_id AS actors, COUNT(film_id) AS number_of_films FROM film_actor GROUP
+    BY actor_id;
+
+
+
